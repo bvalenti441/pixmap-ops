@@ -5,10 +5,9 @@
 using namespace std;
 using namespace agl;
 
-int main(int argc, char** argv)
-{
-   Image image;
-   if (!image.load("../images/feep.png")) {
+int main(int argc, char** argv) {
+    Image image;
+    if (!image.load("../images/feep.png")) {
       std::cout << "ERROR: Cannot load image! Exiting...\n";
       exit(0);
    }
@@ -56,13 +55,13 @@ int main(int argc, char** argv)
    resize.save("earth-200-300.png");
 
    // grayscale
-   Image grayscale = image.grayscale(); 
+   Image grayscale = image.grayscale();
    grayscale.save("earth-grayscale.png");
 
    // flip horizontal
-   Image flip = image.flipHorizontal(); 
+   Image flip = image.flipHorizontal();
    flip.save("earth-flip.png"); 
-
+   
    // sub image
    Image sub = image.subimage(200, 200, 100, 100); 
    sub.save("earth-subimage.png"); 

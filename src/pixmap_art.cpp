@@ -6,6 +6,13 @@ using namespace agl;
 int main(int argc, char** argv)
 {
    // todo: make at least one artwork!
-   return 0;
+    Image image;
+    image.load("../images/soup.png");
+    image = image.grayscale();
+    image = image.invert();
+    image = image.gammaCorrect(0.1);
+    image = image.flipVertical();
+    image = image.flipHorizontal();
+    image.save("boup.png");
 }
 

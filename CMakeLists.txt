@@ -56,4 +56,3 @@ target_link_libraries(pixmap_test)
 
 add_executable(pixmap_art src/pixmap_art.cpp src/image.cpp src/image.h)
 target_link_libraries(pixmap_art)
-
