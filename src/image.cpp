@@ -275,16 +275,16 @@ Image Image::lightest(const Image& other) const {
     }
     return result;
 }
-   Image Image::darkest(const Image& other) const {
-       if (width() * height() * channels_num() != other.width() * other.height() * other.channels_num()) {
-           std::cout << "images must be the same size to call darkest on them" << std::endl;
-           return *this;
-       }
-       Image result(width(), height());
-       for (int i = 0; i < width() * height() * channels_num(); ++i) {
-           result.Data[i] = std::min(Data[i], other.Data[i]);
-       }
-       return result;
+Image Image::darkest(const Image& other) const {
+    if (width() * height() * channels_num() != other.width() * other.height() * other.channels_num()) {
+        std::cout << "images must be the same size to call darkest on them" << std::endl;
+        return *this;
+    }
+    Image result(width(), height());
+    for (int i = 0; i < width() * height() * channels_num(); ++i) {
+        result.Data[i] = std::min(Data[i], other.Data[i]);
+    }
+    return result;
 }
 
 Image Image::gammaCorrect(float gamma) const {
@@ -336,11 +336,11 @@ Image Image::distort() const {
         for (int j = 0; j < width(); ++j) {
             float theta = atan((i - (height() / 2.0f)) / fabs(j - (width() / 2.0f)));
             float r = sqrt(pow(i - height() / 2.0f, 2) + pow(j - width() / 2.0f, 2));
-            int px = (int)(r * cos(theta + M_PI / 4));
-            int py = (int)(r * sin(theta + M_PI / 4));
-            result.Data[(py * width() + px) / channels_num() * channels_num()] = Data[i * width() + j]; // use integer division to round down to the nearest pixel
-            result.Data[(py * width() + px) / channels_num() * channels_num() + 1] = Data[i * width() + j];
-            result.Data[(py * width() + px) / channels_num() * channels_num() + 2] = Data[i * width() + j];
+            float px = r * cos(theta + M_PI / 4);
+            float py = r * sin(theta + M_PI / 4);
+            result.Data[((int)(py * width() + px)) * channels_num()] = Data[i * width() + j];
+            result.Data[((int)(py * width() + px)) * channels_num() + 1] = Data[i * width() + j];
+            result.Data[((int)(py * width() + px)) * channels_num() + 2] = Data[i * width() + j];
         }
     }
     return result;

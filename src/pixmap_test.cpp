@@ -7,7 +7,14 @@ using namespace agl;
 
 int main(int argc, char** argv) {
     Image image;
-    if (!image.load("../images/feep.png")) {
+    image.load("../images/earth.png");
+    Image two;
+    two.load("../images/soup.png");
+    two = two.resize(400, 400);
+    image.darkest(two).save("darkest.png");
+    image.lightest(two).save("lightest.png");
+    image.distort().save("distort.png");
+    /*if (!image.load("../images/feep.png")) {
       std::cout << "ERROR: Cannot load image! Exiting...\n";
       exit(0);
    }
@@ -83,6 +90,6 @@ int main(int argc, char** argv) {
    background.save("background-test.png");
    Image blend = background.alphaBlend(soup, 0.5f);
    image.replace(blend, x, y);
-   image.save("earth-blend-0.5.png");
+   image.save("earth-blend-0.5.png");*/
 }
 
